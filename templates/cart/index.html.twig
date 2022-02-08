@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cart{% endblock %}
+
+{% block body %}
+<div class="cart-wrapper">
+    <h1>Your cart</h1>
+    <ul>
+    {% for item in cart.items %}
+      <li>
+        <h3>{{ item.product.name }}</h3>
+        <div>Quantity: {{ item.quantity }}</div>
+        <div>Price: {{ cartManager.getItemTotal(item)|format_currency('EUR', locale='fr') }}</div>
+      </li>
+    {% endfor %}
+    </ul>
+    <h4>Total : {{ cartManager.getCartTotal(cart)|format_currency('EUR', locale='fr') }}</h4>
+</div>
+{% endblock %}
